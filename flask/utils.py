@@ -73,7 +73,7 @@ def save(model, name, major, minor):
     torch.save(model.state_dict(), PATH)
 def load(model, name, major, minor):
     PATH = 'pretrained_models/' +name+'_'+str(major)+'_'+str(minor)+'.th'
-    model.load_state_dict(torch.load(PATH))
+    model.load_state_dict(torch.load(PATH, map_location='cpu'))
 
 
 

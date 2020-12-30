@@ -122,4 +122,4 @@ def yolo_func():
 
 
 x.start()
-app.run()
+app.run(host='0.0.0.0')

@@ -1,0 +1,22 @@
+CMD ["nginx", "-g", "daemon off;"]
+
+########### stage 0 ##############
+FROM node:15-alpine AS builder
+
+COPY . /home/node/react
+
+WORKDIR /home/node/react
+
+RUN npm install && npm run build
+
+
+
+######### final stage ##############
+
+FROM nginx:stable-alpine
+
+COPY --from=builder /home/node/react/build /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "deamon off;"]
